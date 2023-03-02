@@ -8,7 +8,7 @@ Hello!
 
 ### Rules
 
-In this challenge you must use React as the main development tool. For styling, common CSS as well as preprocessors,
+In this challenge you must use React with Typescript as the main development tool. For styling, common CSS as well as preprocessors,
 CSS in JS and inline CSS frameworks and libraries are appreciated. Dependencies for routes and api call management
 are also allowed.  
 Pay attention to your configurations and dependencies, projects that do not compile or does not boot up will be ignored.  
