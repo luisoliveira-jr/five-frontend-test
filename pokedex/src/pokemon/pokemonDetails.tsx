@@ -20,7 +20,9 @@ export const PokemonDetails: React.FC<PokemonDetailsProps> = () => {
 
     return (
         <Box sx={{ flexGrow: 1 }} margin={5}>
-            <img src={selectedPokemonDetails?.sprites.front_default} alt="" />
+            <img src={selectedPokemonDetails?.sprites.other?.home.front_default} alt="" />
+            <img src={selectedPokemonDetails?.sprites.other?.dream_world.front_default} alt="" />
+            <img src={selectedPokemonDetails?.sprites.other?.['official-artwork'].front_default} alt="" />
             poke: {name}
             {/* <h2>Pokemon selecionado: {selectedPokemon?.name || "Nenhum pokemon selecionado"}</h2> */}
             {JSON.stringify(selectedPokemonDetails, undefined, 2)}
