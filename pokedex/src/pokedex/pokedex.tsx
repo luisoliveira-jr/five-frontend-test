@@ -1,33 +1,38 @@
+import axios from 'axios';
 import React, { useEffect, useState } from 'react'
 
 interface PokedexProps { }
 
-const pokemonsArray: string[] = ["Charmander", "Bulbasaur", "Butterfree", "Squirtle", "Pikachu"]
+interface PokemonListInterface {
+    name: string;
+    url: string;
+ }
 
 export const Pokedex: React.FC<PokedexProps> = () => {
-    const [pokemons, setPkemons] = useState<string[]>(pokemonsArray);
-    const [selectedPokemon, setSelectedpokemon] = useState<string | undefined>('');
+    const [pokemons, setPokemons] = useState<PokemonListInterface[]>([]);
+    const [selectedPokemon, setSelectedpokemon] = useState<PokemonListInterface | undefined>(undefined);
+    const [selectedPokemonDetails, setSelectedpokemonDetails] = useState<any | undefined>(undefined);
 
-    //Com array vazio executa somente quando instanciado
+    //Agora com a a API, utilizando o Axios
     useEffect(() => {
-       alert("O componente foi instanciado")
-    }, []);
+        axios.get('https://pokeapi.co/api/v2/pokemon').then((response) => setPokemons(response.data.results))
+     }, []);
 
-    //Com variável dentro do array, ele observa e executa a cada atualização da variável.
-    useEffect(() => {
-        if (!selectedPokemon) return;
-        alert(selectedPokemon)
-    }, [selectedPokemon]);
+     useEffect(() => {
+        if(!selectedPokemon) return;
 
+        axios.get(`https://pokeapi.co/api/v2/pokemon/${selectedPokemon.name}`).then((response) => setSelectedpokemonDetails(response.data))
+     }, [selectedPokemon]);
 
     return (
         <div>
             <h1>Pokedex</h1>
             <br></br>
             <h2>Pokemons: </h2>
-            {pokemons.map((pokemon) => <button onClick={() => setSelectedpokemon(pokemon)}>{pokemon}</button>)}
+            {pokemons.map((pokemon) => <button onClick={() => setSelectedpokemon(pokemon)}>{pokemon.name}</button>)}
             <br></br>
-            <h2>Pokemon selecionado: {selectedPokemon ? selectedPokemon : "Nenhum pokemon selecionado"}</h2>
+            <h2>Pokemon selecionado: {selectedPokemon?.name || "Nenhum pokemon selecionado"}</h2>
+            {JSON.stringify(selectedPokemonDetails, undefined, 2)}
 
         </div>
     );
