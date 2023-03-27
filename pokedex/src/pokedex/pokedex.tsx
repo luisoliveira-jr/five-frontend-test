@@ -9,25 +9,25 @@ import { PokemonDetail } from '../pokemon/interfaces/PokemonDetails';
 //import * as React from 'react';
 import { AppBar, Box, Toolbar, Typography, Button, IconButton, Container, Pagination, TextField, Stack, Autocomplete, Grid, Card, CardActions, CardContent } from '@mui/material';
 import MenuIcon from '@mui/icons-material/Menu';
+import { useNavigate } from 'react-router-dom';
 
 interface PokedexProps { }
 
 export const Pokedex: React.FC<PokedexProps> = () => {
     const [pokemons, setPokemons] = useState<ResultsPokemonListInterface[]>([]);
     const [selectedPokemon, setSelectedpokemon] = useState<ResultsPokemonListInterface | undefined>(undefined);
-    const [selectedPokemonDetails, setSelectedpokemonDetails] = useState<PokemonDetail | undefined>(undefined);
+    const navigate = useNavigate();  
 
     //Agora com a a API, utilizando o Axios
     useEffect(() => {
         listPokemons().then((response) => setPokemons(response.results))
     }, []);
 
-    useEffect(() => {
-        if (!selectedPokemon) return;
-
-        getPokemonDetails(selectedPokemon.name).then((response) => setSelectedpokemonDetails(response))
-    }, [selectedPokemon]);
-
+   
+    function handleClick(pokemon: ResultsPokemonListInterface) {
+        navigate(`/pokemon/${pokemon.name}`);
+    }
+    
     //Remover
     const top100Films = [
         { title: 'The Shawshank Redemption', year: 1994 },
@@ -95,7 +95,7 @@ export const Pokedex: React.FC<PokedexProps> = () => {
                                                 </Typography>
                                             </CardContent>
                                             <CardActions>
-                                                <Button onClick={() => setSelectedpokemon(pokemon)} size="small">Abrir</Button>
+                                                <Button onClick={() => handleClick(pokemon)} size="small">Abrir</Button>
                                             </CardActions>
                                         </React.Fragment>
                                     </Card>
@@ -104,11 +104,6 @@ export const Pokedex: React.FC<PokedexProps> = () => {
                         </>
                     ))}
                 </Grid>
-            </Box>
-
-            <Box sx={{ flexGrow: 1 }} margin={5}>
-                <h2>Pokemon selecionado: {selectedPokemon?.name || "Nenhum pokemon selecionado"}</h2>
-                {JSON.stringify(selectedPokemonDetails, undefined, 2)}
             </Box>
 
             {/* Pagination */}
