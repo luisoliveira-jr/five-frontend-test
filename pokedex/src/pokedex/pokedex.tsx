@@ -9,25 +9,19 @@ import { PokemonDetail } from '../pokemon/interfaces/PokemonDetails';
 //import * as React from 'react';
 import { AppBar, Box, Toolbar, Typography, Button, IconButton, Container, Pagination, TextField, Stack, Autocomplete, Grid, Card, CardActions, CardContent } from '@mui/material';
 import MenuIcon from '@mui/icons-material/Menu';
-import { useNavigate } from 'react-router-dom';
+import PokedexCard from './components/pokedexCard';
 
 interface PokedexProps { }
 
 export const Pokedex: React.FC<PokedexProps> = () => {
-    const [pokemons, setPokemons] = useState<ResultsPokemonListInterface[]>([]);
+    const [pokemons, setPokemons] = useState<PokemonDetail[]>([]);
     const [selectedPokemon, setSelectedpokemon] = useState<ResultsPokemonListInterface | undefined>(undefined);
-    const navigate = useNavigate();  
 
     //Agora com a a API, utilizando o Axios
     useEffect(() => {
         listPokemons().then((response) => setPokemons(response.results))
     }, []);
 
-   
-    function handleClick(pokemon: ResultsPokemonListInterface) {
-        navigate(`/pokemon/${pokemon.name}`);
-    }
-    
     //Remover
     const top100Films = [
         { title: 'The Shawshank Redemption', year: 1994 },
@@ -38,80 +32,73 @@ export const Pokedex: React.FC<PokedexProps> = () => {
     return (
         <div>
             {/* App Bar */}
-            <Box sx={{ flexGrow: 1 }}>
-                <AppBar position="static">
-                    <Toolbar>
-                        <IconButton
-                            size="large"
-                            edge="start"
-                            color="inherit"
-                            aria-label="menu"
-                            sx={{ mr: 2 }}
-                        >
-                            <MenuIcon />
-                        </IconButton>
-                        <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
-                            Pokedex
-                        </Typography>
-                        <Button color="inherit">Login</Button>
-                    </Toolbar>
-                </AppBar>
-            </Box>
+            <AppBar position="static">
+                <Toolbar>
+                    <IconButton
+                        size="large"
+                        edge="start"
+                        color="inherit"
+                        aria-label="menu"
+                        sx={{ mr: 2 }}
+                    >
+                        <MenuIcon />
+                    </IconButton>
+                    <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
+                        Pokedex
+                    </Typography>
+                    <Button color="inherit">Login</Button>
+                </Toolbar>
+            </AppBar>
+
 
             {/* search */}
-            <Box sx={{ flexGrow: 1 }} margin={2}>
-                <Stack spacing={2} sx={{ width: 300 }}>
-                    <Autocomplete
-                        freeSolo
-                        id="free-solo-2-demo"
-                        disableClearable
-                        options={top100Films.map((option) => option.title)}
-                        renderInput={(params) => (
-                            <TextField
-                                {...params}
-                                label="Search input"
-                                InputProps={{
-                                    ...params.InputProps,
-                                    type: 'search',
-                                }}
-                            />
-                        )}
-                    />
-                </Stack>
-            </Box>
+            <Container maxWidth="lg">
+                <Box mt={2}>
+                    <Stack spacing={2} sx={{ width: 300 }}>
+                        <Autocomplete
+                            freeSolo
+                            id="free-solo-2-demo"
+                            disableClearable
+                            options={top100Films.map((option) => option.title)}
+                            renderInput={(params) => (
+                                <TextField
+                                    {...params}
+                                    label="Search input"
+                                    InputProps={{
+                                        ...params.InputProps,
+                                        type: 'search',
+                                    }}
+                                />
+                            )}
+                        />
+                    </Stack>
+                </Box>
+            </Container>
 
             {/* grid */}
-            <Box sx={{ flexGrow: 1 }} >
-                <Grid container>
-                    {pokemons.map((pokemon) => (
-                        <>
-                            <Grid item xs={6}>
-                                <Box margin={1}>
-                                    <Card variant="outlined">
-                                        <React.Fragment>
-                                            <CardContent>
-                                                <Typography variant="h5" component="div">
-                                                    {pokemon.name}
-                                                </Typography>
-                                            </CardContent>
-                                            <CardActions>
-                                                <Button onClick={() => handleClick(pokemon)} size="small">Abrir</Button>
-                                            </CardActions>
-                                        </React.Fragment>
-                                    </Card>
-                                </Box>
-                            </Grid>
-                        </>
-                    ))}
-                </Grid>
-            </Box>
+            <Container maxWidth="lg">
+                <Box mt={2}>
+                    <Grid container spacing={2}>
+                        {pokemons.map((pokemon) => (
+                            <>
+                                <Grid item xs={6} lg={3}>
+                                    {/* Card */}
+                                    <PokedexCard pokemon={pokemon}/>
+                                </Grid>
+                            </>
+                        ))}
+                    </Grid>
+                </Box>
+            </Container>
 
             {/* Pagination */}
-            <Box sx={{ flexGrow: 1 }} margin={5}>
-                <Pagination count={10} />
-            </Box>
+            <Container maxWidth="lg">
+                <Box margin={2}>
+                    <Pagination count={10} />
+                </Box>
+            </Container>
 
-        </div>
+        </div >
     );
 };
 
