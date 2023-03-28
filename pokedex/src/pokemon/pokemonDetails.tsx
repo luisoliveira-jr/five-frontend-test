@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
-import { AppBar, Autocomplete, Box, Button, Container, IconButton, ImageList, ImageListItem, Pagination, Stack, TextField, Toolbar, Typography } from '@mui/material';
+import { AppBar, Autocomplete, Box, Button, Chip, Container, IconButton, ImageList, ImageListItem, Pagination, Stack, TextField, Toolbar, Typography } from '@mui/material';
 import MenuIcon from '@mui/icons-material/Menu';
 import { PokemonDetail } from './interfaces/PokemonDetails';
 import { getPokemonDetails } from './services/getPokemonDetails';
@@ -71,7 +71,7 @@ export const PokemonDetails: React.FC<PokemonDetailsProps> = () => {
                         {selectedPokemonDetails?.name}
                     </Typography>
 
-                    {selectedPokemonDetails?.types.map((type) => <Typography variant='h5'>{type.type.name}</Typography>)}
+                    {selectedPokemonDetails?.types.map((type) => <Chip label={type.type.name} />)}
 
                     <Card>
                         <img
@@ -102,7 +102,7 @@ export const PokemonDetails: React.FC<PokemonDetailsProps> = () => {
                         <Typography>
                             Abilities:
                         </Typography>
-                        {selectedPokemonDetails?.abilities.map((ability) => <Typography>{ability.ability.name}</Typography>)}
+                        {selectedPokemonDetails?.abilities.map((ability) => <Typography>{ability.ability.name} ...</Typography>)}
                     </Box>
 
                 </Box>
