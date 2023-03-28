@@ -1,4 +1,3 @@
-import { useSelect } from '@mui/base';
 import React, { useState } from 'react';
 import { PokemonDetail } from '../../pokemon/interfaces/PokemonDetails';
 

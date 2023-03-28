@@ -1,10 +1,8 @@
 import React, { useContext, useEffect, useState } from 'react';
-import { useNavigate, useParams } from 'react-router-dom';
-import { AppBar, Autocomplete, Box, Button, Chip, Container, IconButton, ImageList, ImageListItem, Pagination, Stack, TextField, Toolbar, Typography } from '@mui/material';
-import MenuIcon from '@mui/icons-material/Menu';
+import { useParams } from 'react-router-dom';
+import { Box, Container, IconButton, Stack, Typography } from '@mui/material';
 import { PokemonDetail } from './interfaces/PokemonDetails';
 import { getPokemonDetails } from './services/getPokemonDetails';
-import { type } from 'os';
 import styled from 'styled-components';
 import { PokeAppBar } from '../appBar/AppBar';
 import { ProfileContext } from '../profile/contexts/ProfileContext';
@@ -44,15 +42,6 @@ export const PokemonDetails: React.FC<PokemonDetailsProps> = () => {
             {/* App Bar */}
             <PokeAppBar></PokeAppBar>
 
-            {/* search */}
-            <Container maxWidth="lg">
-                <Box mt={2}>
-                    <Stack spacing={2} sx={{ width: 300 }}>
-
-                    </Stack>
-                </Box>
-            </Container>
-
             {/* grid */}
             <Container maxWidth="lg">
                 <Box
@@ -63,7 +52,7 @@ export const PokemonDetails: React.FC<PokemonDetailsProps> = () => {
                     <Typography variant='h2'>
                         {selectedPokemonDetails?.name}
                     </Typography>
-                    <IconButton  onClick={() => isFavorite ? removePokemonFromFavorites() : addPokemonToFavorite()} aria-label="add to favorites" color={isFavorite ? `error` : `default`}>
+                    <IconButton onClick={() => isFavorite ? removePokemonFromFavorites() : addPokemonToFavorite()} aria-label="add to favorites" color={isFavorite ? `error` : `default`}>
                         <FavoriteIcon />
                     </IconButton>
                 </Box>
@@ -81,34 +70,35 @@ export const PokemonDetails: React.FC<PokemonDetailsProps> = () => {
                     />
                 </Card>
 
-                <Box display="flex" flexDirection="row">
-                    <Typography>
-                        Height:
-                    </Typography>
-                    <Typography>
-                        {selectedPokemonDetails?.height}
-                    </Typography>
+                <Box margin={2}
+                    sx={{ flexGrow: 1 }}
+                   >
+                    <Box display="flex" flexDirection="row">
+                        <Typography>
+                            Height:
+                        </Typography>
+                        <Typography>
+                            {selectedPokemonDetails?.height}
+                        </Typography>
+                    </Box>
+                    <Box display="flex" flexDirection="row">
+                        <Typography>
+                            Weight:
+                        </Typography>
+                        <Typography>
+                            {selectedPokemonDetails?.weight}
+                        </Typography>
+                    </Box>
+                    <Box display="flex" flexDirection="row">
+                        <Typography>
+                            Abilities:
+                        </Typography>
+                        <Typography>
+                            {selectedPokemonDetails?.abilities.map((ability) => ability.ability.name).join(', ')}
+                        </Typography>
+                    </Box>
                 </Box>
-                <Box display="flex" flexDirection="row">
-                    <Typography>
-                        Weight:
-                    </Typography>
-                    <Typography>
-                        {selectedPokemonDetails?.weight}
-                    </Typography>
-                </Box>
-                <Box display="flex" flexDirection="row">
-                    <Typography>
-                        Abilities:
-                    </Typography>
-                    <Typography>
-                        {selectedPokemonDetails?.abilities.map((ability) => ability.ability.name).join(', ')}
-                    </Typography>
-                </Box>
-
-            
-        </Container>
-
+            </Container>
         </div >
     );
 

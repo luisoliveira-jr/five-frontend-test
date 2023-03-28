@@ -1,12 +1,8 @@
 
 import React from 'react';
-import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
-import logo from './logo.svg';
-import Pokedex from './pokedex/Pokedex';
+import { BrowserRouter as Router } from 'react-router-dom';
 import { AppRoutes } from './routes';
 import { QueryClient, QueryClientProvider, } from 'react-query';
-import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
-import Favorite from '@mui/icons-material/Favorite';
 import { ProfileProvider } from './profile/contexts/ProfileContext';
 
 interface AppProps {
