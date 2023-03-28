@@ -1,24 +1,16 @@
-//Pokedex imports
-import axios from 'axios';
-import React, { useContext, useEffect, useState } from 'react'
-import { getPokemonDetails } from '../pokemon/services/getPokemonDetails';
-import { listPokemons, ResultsPokemonListInterface } from '../pokemon/services/listPokemons';
-import { PokemonDetail } from '../pokemon/interfaces/PokemonDetails';
-
-//App bar imports
-//import * as React from 'react';
-import { AppBar, Box, Toolbar, Typography, Button, IconButton, Container, Pagination, TextField, Stack, Autocomplete, Grid, Card, CardActions, CardContent } from '@mui/material';
-import MenuIcon from '@mui/icons-material/Menu';
-import PokedexCard from './components/pokedexCard';
+import { Autocomplete, Box, Container, Grid, Pagination, Stack, TextField } from '@mui/material';
+import React, { useContext } from 'react';
 import { useQuery } from 'react-query';
-import { useNavigate, useParams } from 'react-router-dom';
 import { PokeAppBar } from '../appBar/AppBar';
-import { ProfileContext } from '../profile/contexts/ProfileContext';
+import PokedexCard from '../pokedex/components/pokedexCard';
+import { listPokemons } from '../pokemon/services/listPokemons';
+import { ProfileContext } from './contexts/ProfileContext';
 
-interface PokedexProps { }
+interface ProfileProps {
 
-export const Pokedex: React.FC<PokedexProps> = () => {
-    const { data } = useQuery(`listPokemons`, listPokemons);
+}
+
+export const Profile: React.FC<ProfileProps> = () => {
     const { favorites } = useContext(ProfileContext);
 
     //Remover
@@ -32,7 +24,6 @@ export const Pokedex: React.FC<PokedexProps> = () => {
         <div>
             {/* App Bar */}
             <PokeAppBar></PokeAppBar>
-
             {/* search */}
             <Container maxWidth="lg">
                 <Box mt={2}>
@@ -61,7 +52,7 @@ export const Pokedex: React.FC<PokedexProps> = () => {
             <Container maxWidth="lg">
                 <Box mt={2}>
                     <Grid container spacing={1}>
-                        {data?.results.map((pokemon) => (
+                        {favorites?.map((pokemon) => (
                             <>
                                 <Grid item xs={4} lg={4}>
                                     {/* Card */}
@@ -79,9 +70,8 @@ export const Pokedex: React.FC<PokedexProps> = () => {
                     <Pagination count={3} />
                 </Box>
             </Container>
-
-        </div >
+        </div>
     );
 };
 
-export default Pokedex
+export default Profile;
