@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import { AppBar, Autocomplete, Box, Button, Container, IconButton, ImageList, ImageListItem, Pagination, Stack, TextField, Toolbar, Typography } from '@mui/material';
 import MenuIcon from '@mui/icons-material/Menu';
 import { PokemonDetail } from './interfaces/PokemonDetails';
@@ -17,6 +17,12 @@ export const PokemonDetails: React.FC<PokemonDetailsProps> = () => {
 
     const Card = styled.section`
     text-align: center;`;
+
+    const navigate = useNavigate();
+
+    function handleClick() {
+        navigate(`/`);
+    };
 
     useEffect(() => {
         if (!name) return;
@@ -41,7 +47,7 @@ export const PokemonDetails: React.FC<PokemonDetailsProps> = () => {
                     <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
                         {name}
                     </Typography>
-                    <Button color="inherit">Login</Button>
+                    <Button onClick={handleClick} color="inherit">Voltar</Button>
                 </Toolbar>
             </AppBar>
 

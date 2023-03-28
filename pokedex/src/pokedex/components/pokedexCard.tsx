@@ -14,6 +14,7 @@ interface PokedexCardProps {
     pokemon: PokemonDetail
 }
 
+
 /* const Card = styled.section`
     padding: 4em;
     border-radius .5em;
@@ -36,11 +37,14 @@ export const PokedexCard: React.FC<PokedexCardProps> = ({ pokemon }) => {
                 image={pokemon.sprites.other?.["official-artwork"].front_default}
                 alt={pokemon.name}
             />
-            <CardHeader
-                onClick={handleClick}
-                title={pokemon.name}
-                subheader={pokemon.types.map((type) => <Chip label={type.type.name} variant="outlined" />)}
-            />
+            <CardContent onClick={handleClick}>
+                <Typography sx={{ fontSize: 14 }} color="text.secondary" gutterBottom>
+                {pokemon.name}
+                </Typography>
+                <Typography variant="body2">
+                {pokemon.types[0].type.name}
+                </Typography>
+            </CardContent>
             <CardActions disableSpacing>
                 <IconButton aria-label="add to favorites">
                     <FavoriteIcon />

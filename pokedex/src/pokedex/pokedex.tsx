@@ -10,17 +10,12 @@ import { PokemonDetail } from '../pokemon/interfaces/PokemonDetails';
 import { AppBar, Box, Toolbar, Typography, Button, IconButton, Container, Pagination, TextField, Stack, Autocomplete, Grid, Card, CardActions, CardContent } from '@mui/material';
 import MenuIcon from '@mui/icons-material/Menu';
 import PokedexCard from './components/pokedexCard';
+import { useQuery } from 'react-query';
 
 interface PokedexProps { }
 
 export const Pokedex: React.FC<PokedexProps> = () => {
-    const [pokemons, setPokemons] = useState<PokemonDetail[]>([]);
-    const [selectedPokemon, setSelectedpokemon] = useState<ResultsPokemonListInterface | undefined>(undefined);
-
-    //Agora com a a API, utilizando o Axios
-    useEffect(() => {
-        listPokemons().then((response) => setPokemons(response.results))
-    }, []);
+    const { data } = useQuery(`listPokemons`, listPokemons);
 
     //Remover
     const top100Films = [
@@ -79,11 +74,11 @@ export const Pokedex: React.FC<PokedexProps> = () => {
             <Container maxWidth="lg">
                 <Box mt={2}>
                     <Grid container spacing={2}>
-                        {pokemons.map((pokemon) => (
+                        {data?.results.map((pokemon) => (
                             <>
-                                <Grid item xs={6} lg={3}>
+                                <Grid item xs={4} lg={4}>
                                     {/* Card */}
-                                    <PokedexCard pokemon={pokemon}/>
+                                    <PokedexCard pokemon={pokemon} />
                                 </Grid>
                             </>
                         ))}
