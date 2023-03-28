@@ -1,55 +1,46 @@
-# Frontend Challenge
+# Getting Started with Create React App
 
-Hello!
+This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-#### We are happy that you are interested in joining our team! We created a challenge based on some skills we use in our daily lives to get to know a little more about you.
+## Available Scripts
 
-# Pokemon website
+In the project directory, you can run:
 
-### Rules
+### `npm start`
 
-In this challenge you must use React with Typescript as the main development tool. For styling, common CSS as well as preprocessors,
-CSS in JS and inline CSS frameworks and libraries are appreciated. Dependencies for routes and api call management
-are also allowed.  
-Pay attention to your configurations and dependencies, projects that do not compile or does not boot up will be ignored.  
-If your project demands any custom configurations, you must provide a README.md file with the instructions to execute
-the application.
+Runs the app in the development mode.\
+Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 
-## On this test
+The page will reload if you make edits.\
+You will also see any lint errors in the console.
 
-You will have to consume the [Pokemon API](https://pokeapi.co/) to build a website containing 3 main pages.
+### `npm test`
 
-### PAGES
+Launches the test runner in the interactive watch mode.\
+See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
 
-* login page: This page shall contain fields for email and password (to be stored via local storage and simulate an
-authentication) or use an external login method (github, google, etc).
-* pokemon view: This page shall have filters (element type, species name and generation) to search pokemons and, using
-pagination, list the pokemon species results, and if authenticated, show the option to add the pokemon to the user's
-list on each pokemon card.
-* profile view (authenticated only): This page shall have the user info (name, email/github profile link) and the list
-of the user's pokemons, with the option to remove any pokemon from the list.  
+### `npm run build`
 
-**ERROR HANDLING:** It is very important that there are cases to treat errors on the application, like authentication errors,
-empty response errors, etc.
+Builds the app for production to the `build` folder.\
+It correctly bundles React in production mode and optimizes the build for the best performance.
 
-**STYLING:** We do not provide a standard layout to be following during development, meaning the style of the app shall
-follow your personal taste, given that it is user-friendly and responsive.
+The build is minified and the filenames include the hashes.\
+Your app is ready to be deployed!
 
-#### Bonus (optional) :star2:
-Write unit tests using [Vitest](https://vitest.dev/) or [Jest](https://jestjs.io/pt-BR/)
+See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
 
+### `npm run eject`
 
-# Submission
-Send the URL of a private git repository with your code to `developers@fivevalidation.com`.
+**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
 
-For example: [GitHub](https://github.com) or [GitLab](https://gitlab.com).
-* **It needs to be sent with the git collaboration invite to give us access to view your repository.** [How to invite collaborators](https://docs.github.com/en/account-and-profile/setting-up-and-managing-your-personal-account-on-github/managing-access-to-your-personal-repositories/inviting-collaborators-to-a-personal-repository)
+If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
 
+Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
 
-# Good luck!
-This challenge will test a front-end developer's skills in building dynamic and responsive web applications, as well as
-their knowledge of HTML, CSS, JavaScript, React, API integration, and responsive design. It will also give the developer
-the opportunity to work with
-pokemon API.Have Fun!
+You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
 
-If you have questions, send an email to `developers@fivevalidation.com`
+## Learn More
+
+You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+
+To learn React, check out the [React documentation](https://reactjs.org/).
